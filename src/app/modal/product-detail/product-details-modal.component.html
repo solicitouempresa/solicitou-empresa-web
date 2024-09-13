@@ -1,0 +1,38 @@
+<mat-dialog-content>
+  <h2 class="modal-title">Detalhes do Pedido</h2>
+
+  <div *ngIf="data.order.productItem && data.order.productItem.length > 0; else noItems">
+    <div class="product-list">
+      <div class="product-item" *ngFor="let item of data.order.productItem">
+        <div class="item-row">
+          <strong>Nome:</strong> {{item.product.name}}
+        </div>
+        <div class="item-row">
+          <strong>Descrição:</strong> {{item.product.description}}
+        </div>
+        <div class="item-row">
+          <strong>Quantidade:</strong> {{item.quantity}}
+        </div>
+        <div class="item-row">
+          <strong>Preço:</strong> {{item.product.price | currency: 'BRL'}}
+        </div>
+        <div class="item-row">
+          <strong>Total:</strong> {{item.quantity * item.product.price | currency: 'BRL'}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noItems>
+    <p>Não há itens para exibir.</p>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="actions-container">
+    <button *ngIf="data.order.statusOrder !== 'ENTREGUE'" mat-button color="primary" (click)="advanceStatus(data.order)">
+      {{'Avançar para o status: ' + recoveryNextStatus(data.order.statusOrder)}}
+    </button>
+    <button mat-button (click)="onNoClick()">Fechar</button>
+  </div>
+</mat-dialog-actions>

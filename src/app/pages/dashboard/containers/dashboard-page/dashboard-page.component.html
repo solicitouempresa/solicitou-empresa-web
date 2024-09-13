@@ -1,0 +1,73 @@
+<app-layout>
+  <mat-toolbar class="page-header" role="heading">
+    <h1>Dashboard - {{sysdate | date: 'dd/MM/yyyy'}}</h1>
+    <!-- <button mat-flat-button color="warn">Latest Reports</button> -->
+  </mat-toolbar>
+  <mat-card *ngIf="!loading" class="dashboard-card">
+    <div class="dashboard-container">
+        <div class="info-row">
+            <div class="info-item">
+                <p><strong>Total de Vendas com a plataforma:</strong></p>
+                <p>{{countSale}} Venda</p>
+            </div>
+            <div class="info-item">
+                <p><strong>Valores faturados com a plataforma:</strong></p>
+                <p>{{valuesWin | currency: 'BRL' }}</p>
+            </div>
+            <div class="info-item">
+                <p><strong>Taxas da plataforma:</strong></p>
+                <p>{{valuesImpost | currency: 'BRL' }}</p>
+            </div>
+        </div>
+
+        <div class="cards-container">
+            <div class="card">
+                <h3>SOLICITADO</h3>
+                <p class="quantity">{{countSolicitado}}</p>
+                <button (click)="navigateToOrders('SOLICITADO')">Ver mais</button>
+            </div>
+            <div class="card">
+                <h3>PREPARANDO PEDIDO</h3>
+                <p class="quantity">{{countPreparandoPedido}}</p>
+                <button (click)="navigateToOrders('PREPARANDO PEDIDO')">Ver mais</button>
+            </div>
+            <div class="card">
+                <h3>ENTREGANDO</h3>
+                <p class="quantity">{{countEntregando}}</p>
+                <button (click)="navigateToOrders('ENTREGANDO')">Ver mais</button>
+            </div>
+            <div class="card">
+                <h3>ENTREGUE</h3>
+                <p class="quantity">{{countEntregue}}</p>
+                <button (click)="navigateToOrders('ENTREGUE')">Ver mais</button>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+  
+  
+  
+  <!-- <div class="charts-wrapper">
+    <div class="chart">
+      <app-visits-chart [visitsChartData]="visitsChartData$ | async"></app-visits-chart>
+    </div>
+    <div class="chart">
+      <app-performance-chart [performanceChartData]="performanceChartData$ | async"></app-performance-chart>
+    </div>
+    <div class="chart">
+      <app-server-chart [serverChartData]="serverChartData$ | async"></app-server-chart>
+    </div>
+    <div class="chart">
+      <app-revenue-chart [revenueCharData]="revenueChartData$ | async"></app-revenue-chart>
+    </div>
+  </div> -->
+
+  <!-- <app-daily-line-chart [dailyLineChartData]="dailyLineChartData$ | async"></app-daily-line-chart>
+
+  <app-project-stat-chart [projectsStatsData]="projectsStatsData$ | async"></app-project-stat-chart>
+
+  <app-support-requests [supportRequestData]="supportRequestData$ | async"></app-support-requests> -->
+
+  <!-- <app-footer></app-footer> -->
+</app-layout>

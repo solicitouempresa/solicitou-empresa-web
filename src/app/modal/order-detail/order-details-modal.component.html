@@ -1,0 +1,30 @@
+<mat-dialog-content>
+  <div class="title">
+    <h2>{{titleScreen}}</h2>
+  </div>
+
+  <div class="content-container" *ngIf="dataSource && dataSource.length > 0; else noItems">
+    <div *ngFor="let element of dataSource" class="item-container" (click)="openProductDetails(element)">
+      <div class="item">
+        <strong>Estabelecimento:</strong> {{element.establishment.name}}
+      </div>
+      <div class="item">
+        <strong>Status:</strong> {{element.statusOrder}}
+      </div>
+      <div class="item">
+        <strong>Endereço:</strong> {{element.addressDelivery.address}}
+      </div>
+      <div class="item">
+        <strong>Data/Hora:</strong> {{element.dateCreated ? (element.dateCreated | date : 'dd/MM/yyyy HH:mm') : '-'}}
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noItems>
+    <p>Não há itens para exibir.</p>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Fechar</button>
+</mat-dialog-actions>
